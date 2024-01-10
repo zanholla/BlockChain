@@ -1,2 +1,2 @@
 # BlockChain
-For honors project
+Simple blockchain for voting as part of a school project
