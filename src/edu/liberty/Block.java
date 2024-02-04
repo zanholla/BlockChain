@@ -46,7 +46,7 @@ public class Block {
 	
 	
 	/////////////////////////////////// code borrowed from https://www.geeksforgeeks.org/sha-256-hash-in-java/
-	private static byte[] getSHA(String input) throws NoSuchAlgorithmException {
+	public static byte[] getSHA(String input) throws NoSuchAlgorithmException {
         // Static getInstance method is called with hashing SHA
         MessageDigest md = MessageDigest.getInstance("SHA-256");
  
@@ -55,7 +55,7 @@ public class Block {
         // and return array of byte
         return md.digest(input.getBytes(StandardCharsets.UTF_8));
     }
-	private static String toHexString(byte[] hash) {
+	public static String toHexString(byte[] hash) {
         // Convert byte array into signum representation
         BigInteger number = new BigInteger(1, hash);
  
