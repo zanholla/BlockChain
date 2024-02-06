@@ -41,4 +41,8 @@ public class BlockChain {
 		chain.add(new Block(data, chain.get(len - 1).getBlockHash()));
 		len = chain.size();
 	}
+	public void addBlock(String data, String time) {
+		chain.add(new Block(data, chain.get(len - 1).getBlockHash(), time));
+		len = chain.size();
+	}
 }

@@ -25,8 +25,23 @@ public class Block {
 			e.printStackTrace();
 		}
 	}
-	public byte[] getBlockHash() {
+	Block(String data, byte[] prevHash, String time) {
+		try {
+			newBlock(data, prevHash, time);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+	}
+	public byte[] getStoredBlockHash() {
 		return blockHash;
+	}
+	public byte[] getBlockHash() {
+		try {
+			return getSHA(timestamp + getPreviousHashString() + blockData);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	public byte[] getPreviousHash() {
 		return previousHash;
@@ -72,13 +87,19 @@ public class Block {
     }
 	///////////////////////////////////
 	private void setTimeStamp() {
-		timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS a z").format(new Date());
+		timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd hh:mm:ss a z").format(new Date());
 	}
 	private void hashBlock() throws NoSuchAlgorithmException {
 		blockHash = getSHA(timestamp + getPreviousHashString() + blockData);
 	}
 	private void newBlock(String data, byte[] prevHash) throws NoSuchAlgorithmException {
 		setTimeStamp();
+		blockData = data;
+		previousHash = prevHash;
+		hashBlock();
+	}
+	private void newBlock(String data, byte[] prevHash, String time) throws NoSuchAlgorithmException {
+		timestamp = time;
 		blockData = data;
 		previousHash = prevHash;
 		hashBlock();
