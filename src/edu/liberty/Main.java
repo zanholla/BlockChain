@@ -162,6 +162,7 @@ public class Main {
 				}
 			} else if (consoleInput.equalsIgnoreCase("validate")) {
 				for (int i = 1; i < b.getLen(); ++i) {
+					System.out.println("Checking block " + i);
 					if (!b.getBlock(i - 1).getBlockHashString().equalsIgnoreCase(b.getBlock(i).getPreviousHashString())) {
 						System.out.println("Failed validating hashes on block " + i);
 					}

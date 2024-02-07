@@ -47,7 +47,7 @@ public class Block {
 		return previousHash;
 	}
 	public String getBlockHashString() {
-		return toHexString(blockHash);
+		return toHexString(getBlockHash());
 	}
 	public String getPreviousHashString() {
 		return toHexString(previousHash);
